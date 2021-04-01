@@ -1,0 +1,8 @@
+name: publish-in-apim
+on: push
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: authenticate
+        run: echo "Hello World!"
