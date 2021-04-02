@@ -38,7 +38,7 @@ jobs:
           output=$(curl -k -H "Authorization: Bearer 80511d81-50bb-3851-91cd-e08b414be7b7" -F file=@${{ steps.checkout.outputs.modified }} -F additionalProperties="{\"name\":\"sanuli\",\"version\":\"1.2.3\",\"context\":\"/sanuli\",\"endpointConfig\":{\"endpoint_type\":\"http\",\"sandbox_endpoints\":{\"url\":\"https://localhost:9443/am/sample/pizzashack/v1/api/\"},\"production_endpoints\":{\"url\":\"https://localhost:9443/am/sample/pizzashack/v1/api/\"}}}" "http://adf3f17ae214.ngrok.io/api/am/publisher/v1/apis/import-openapi")
           echo "$output" > response.json;
           echo "boo";
-          echo "${{fromJson(steps.createapi.outputs.response.json).id}}"
+          echo "${{fromJson($output).id}}"
       - name: printtext
         run : |
           echo "tanya"
