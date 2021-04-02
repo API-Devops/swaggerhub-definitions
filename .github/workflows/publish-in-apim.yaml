@@ -34,4 +34,4 @@ jobs:
       - name: curl
         uses: wei/curl@master
         with:
-          args: http://192.168.8.100:9090/banksvc/current
+          args: https://run.mocky.io/v3/8e5ebe21-2762-4c8c-a444-30e829f6f6d4
