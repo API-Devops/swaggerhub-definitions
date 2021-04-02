@@ -17,17 +17,17 @@ jobs:
       - name: Printing
         run: |
           echo "All:"
-          echo "${{ steps.abc.outputs.all }}"
+          echo "${{ steps.checkout.outputs.all }}"
           echo "Added:"
-          echo "${{ steps.abc.outputs.added }}"
+          echo "${{ steps.checkout.outputs.added }}"
           echo "Removed:"
-          echo "${{ steps.abc.outputs.removed }}"
+          echo "${{ steps.checkout.outputs.removed }}"
           echo "Renamed:"
-          echo "${{ steps.abc.outputs.renamed }}"
+          echo "${{ steps.checkout.outputs.renamed }}"
           echo "Modified:"
-          echo "${{ steps.abc.outputs.modified }}"
+          echo "${{ steps.checkout.outputs.modified }}"
           echo "Added+Modified:"
-          echo "${{ steps.abc.outputs.added_modified }}"
+          echo "${{ steps.checkout.outputs.added_modified }}"
       - name: get content of modifiled file
         id: getYaml
-        run: echo "::set-output name=yaml::$(cat steps.abc.outputs.modified)"
+        run: echo "::set-output name=yaml::$(cat steps.checkout.outputs.modified)"
