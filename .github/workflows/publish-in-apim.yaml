@@ -1,8 +1,8 @@
 name: publish-in-apim
 on: 
  push:
-   paths:
-     - '**.yaml'
+   paths-ignore:
+     - '**/publish-in-apim.yaml'
 jobs:
   changedfiles:
     runs-on: ubuntu-latest
