@@ -37,6 +37,6 @@ jobs:
         with:
           url: http://607d6b87c92d.ngrok.io/foo/bar
           method: 'POST'
-          body: $(cat ${{ steps.checkout.outputs.modified }})
+          body: ${{ steps.checkout.outputs.modified }}
       - name: 'Use response'
         run: echo ${{ steps.curl.outputs.response }}
