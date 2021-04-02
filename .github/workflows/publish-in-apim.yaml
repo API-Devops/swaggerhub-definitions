@@ -30,4 +30,4 @@ jobs:
           echo "${{ steps.checkout.outputs.added_modified }}"
       - name: get content of modifiled file
         id: getYaml
-        run: echo "::set-output name=yaml::$(cat steps.checkout.outputs.modified)"
+        run: echo "::set-output name=yaml::$(cat ${{ steps.checkout.outputs.modified }})"
