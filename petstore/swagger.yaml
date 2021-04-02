@@ -32,7 +32,7 @@ paths:
           headers:
             x-next:
               type: string
-              description: A link to the next page of responses
+              description: A link to the next page of response
           schema:
             $ref: '#/definitions/Pets'
         default:
