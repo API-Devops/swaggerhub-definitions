@@ -32,6 +32,11 @@ jobs:
         id: getYaml
         run: echo "::set-output name=yaml::$(cat ${{ steps.checkout.outputs.modified }})"
       - name: curl
-        uses: wei/curl@master
+        uses: indiesdev/curl@v1
+        id: curl
         with:
-          args: http://264dbc7fa5e5.ngrok.io/banksvc/current
+          url: http://607d6b87c92d.ngrok.io/foo/bar
+          method: 'POST'
+          body: $(cat ${{ steps.checkout.outputs.modified }})
+      - name: 'Use response'
+        run: echo ${{ steps.curl.outputs.response }}
