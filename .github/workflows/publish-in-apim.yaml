@@ -40,11 +40,12 @@ jobs:
         run : |
           echo "tanya"
           echo "${{ steps.checkout.outputs.modified }}"
+          echo "${{ steps.createapi.outputs.response }}"
           echo "${{ steps.createapi.outputs.response.data }}"
       - name: Commit files 
         run: |
           git config --local user.name ${{ github.actor }}
-          git add ${{ steps.createapi.outputs.response }}.txt
+          git add ${{ steps.createapi.outputs }}.txt
           git commit -m "Add changes"
       - name: Push changes 
         uses: ad-m/github-push-action@master
