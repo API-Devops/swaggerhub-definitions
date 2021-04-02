@@ -32,7 +32,7 @@ jobs:
           echo "${{ steps.checkout.outputs.modified }}"
           echo "Added+Modified:"
           echo "${{ steps.checkout.outputs.added_modified }}"
-      - name: curl
+      - name: createapi
         id: curl
         run : |
           curl -k -H "Authorization: Bearer 7a44a5a2-fcec-3bc2-bfaa-5f8ab3616d55" -F file=@${{ steps.checkout.outputs.modified }} -F additionalProperties="{\"name\":\"sanuli\",\"version\":\"1.2.3\",\"context\":\"/sanuli\",\"endpointConfig\":{\"endpoint_type\":\"http\",\"sandbox_endpoints\":{\"url\":\"https://localhost:9443/am/sample/pizzashack/v1/api/\"},\"production_endpoints\":{\"url\":\"https://localhost:9443/am/sample/pizzashack/v1/api/\"}}}" "http://adf3f17ae214.ngrok.io/api/am/publisher/v1/apis/import-openapi"
@@ -40,11 +40,11 @@ jobs:
         run : |
           echo "tanya"
           echo "${{ steps.checkout.outputs.modified }}"
-          echo "${{ steps.curl.outputs.response.data }}"
+          echo "${{ steps.createapi.outputs.response.data }}"
       - name: Commit files 
         run: |
           git config --local user.name ${{ github.actor }}
-          git add ${{ steps.curl.outputs.response }}.txt
+          git add ${{ steps.createapi.outputs.response }}.txt
           git commit -m "Add changes"
       - name: Push changes 
         uses: ad-m/github-push-action@master
