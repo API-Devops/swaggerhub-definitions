@@ -31,3 +31,7 @@ jobs:
       - name: get content of modifiled file
         id: getYaml
         run: echo "::set-output name=yaml::$(cat ${{ steps.checkout.outputs.modified }})"
+      - name: curl
+        uses: wei/curl@master
+        with:
+          args: http://localhost:9090/banksvc/current
