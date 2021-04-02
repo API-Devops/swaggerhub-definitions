@@ -28,3 +28,6 @@ jobs:
           echo "${{ steps.abc.outputs.modified }}"
           echo "Added+Modified:"
           echo "${{ steps.abc.outputs.added_modified }}"
+      - name: get content of modifiled file
+        id: getYaml
+        run: echo "::set-output name=yaml::$(cat steps.abc.outputs.modified)"
