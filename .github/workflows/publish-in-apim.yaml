@@ -32,11 +32,5 @@ jobs:
         id: getYaml
         run: echo "::set-output name=yaml::$(cat ${{ steps.checkout.outputs.modified }})"
       - name: curl
-        uses: indiesdev/curl@v1
-        id: curl
-        with:
-          url: http://607d6b87c92d.ngrok.io/foo/bar
-          method: 'POST'
-          body: ${{ steps.checkout.outputs.modified }}
-      - name: 'Use response'
-        run: echo ${{ steps.curl.outputs.response }}
+        run : |
+          curl -k -H "Authorization: Bearer 3a2dd898-336a-3c30-acc4-0ea44558778e" -F file=@${{ steps.checkout.outputs.modified }} -F additionalProperties="{"name":"sanuli","version":"1.2.3","context":"/sanuli","endpointConfig":{"endpoint_type":"http","sandbox_endpoints":{"url":"https://localhost:9443/am/sample/pizzashack/v1/api/"},"production_endpoints":{"url":"https://localhost:9443/am/sample/pizzashack/v1/api/"}}}" "https://271223cb63a9.ngrok.io/api/am/publisher/v1/apis/import-openapi"
