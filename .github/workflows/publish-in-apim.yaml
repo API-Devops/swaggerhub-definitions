@@ -39,7 +39,8 @@ jobs:
       - name: check
         run: |
           echo "testttt"
-          echo "${{ steps.curl.outputs }}"
+          echo "${{ steps.curl.outputs.response }}"
+          echo "${{ steps.curl.outputs.id }}"
       - name: Commit files 
         run: |
           git config --local user.name ${{ github.actor }}
