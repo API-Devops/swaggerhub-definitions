@@ -42,7 +42,7 @@ jobs:
       - name: printtext
         run : |
           echo "tanya";
-          echo "${{ steps.createapi.outputs.responseJson.id }}"
+          echo "$${{ fromJSON($output).id}}"
       - name: Commit files 
         run: |
           git config --local user.name ${{ github.actor }}
