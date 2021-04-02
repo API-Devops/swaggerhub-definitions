@@ -5,5 +5,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: authenticate
-        run: echo "Hello World!"
-             git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
+        run: git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
