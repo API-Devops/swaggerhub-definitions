@@ -40,7 +40,7 @@ jobs:
           curl -k -H "Authorization: Bearer b576211b-2479-30f9-abd8-f3ef5992703d" -F file=@${{ steps.checkout.outputs.modified }} -F additionalProperties="{\"name\":\"sanuli\",\"version\":\"1.2.3\",\"context\":\"/sanuli\",\"endpointConfig\":{\"endpoint_type\":\"http\",\"sandbox_endpoints\":{\"url\":\"https://localhost:9443/am/sample/pizzashack/v1/api/\"},\"production_endpoints\":{\"url\":\"https://localhost:9443/am/sample/pizzashack/v1/api/\"}}}" "http://adf3f17ae214.ngrok.io/api/am/publisher/v1/apis/import-openapi"
       - name: create a text file
         run: |
-          echo cat(${{ steps.curl.outputs.response }}) >> id.txt
+          echo "::set-output name=id.txt::$(cat ${{ steps.curl.outputs.response  }})"
       - name: Commit files 
         run: |
           git config --local user.name ${{ github.actor }}
