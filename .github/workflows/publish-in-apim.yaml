@@ -39,11 +39,10 @@ jobs:
       - name: printtext
         run : |
           echo "tanya"
-          echo "${{fromJson(steps.curl.outputs)}}"
       - name: Commit files 
         run: |
           git config --local user.name ${{ github.actor }}
-          git add ${{ steps.curl.outputs.response.id }}.txt
+          git add ${{ steps.curl.outputs.response }}.txt
           git commit -m "Add changes"
       - name: Push changes 
         uses: ad-m/github-push-action@master
