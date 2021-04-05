@@ -57,4 +57,4 @@ jobs:
         if: ${{ steps.checkout.outputs.modified != '' }}
         id: updateapi
         run : |
-          update=$(curl -k -X PUT -H "Authorization: Bearer dc658218-b996-3e2b-999e-f44cf590cd9c" -F apiDefinition=@${{ steps.checkout.outputs.modified }} "http://edba63783ff9.ngrok.io/api/am/publisher/v1/apis/96077508-fd01-4fae-bc64-5de0e2baf43c/swagger")
+          update=$(curl -k -X PUT -H "Authorization: Bearer dc658218-b996-3e2b-999e-f44cf590cd9c" -F apiDefinition=@${{ steps.checkout.outputs.modified }} "http://edba63783ff9.ngrok.io/api/am/publisher/v1/apis/0d6a38c2-3d16-4d45-bab6-45ce6c491cb0/swagger")
