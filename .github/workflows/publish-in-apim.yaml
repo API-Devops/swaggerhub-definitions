@@ -34,17 +34,21 @@ jobs:
           echo "${{ steps.checkout.outputs.added_modified }}"
           echo "if condition"
           echo ${{ steps.checkout.outputs.added != '' }}
-      - if: ${{ steps.checkout.outputs.added != '' }}
-        name: createapi
+      - name: createapi
         id: createapi
         run : |
           output=$(curl -k -H "Authorization: Bearer b7aab797-5a1f-3dd5-ae3a-2a8d249afa69" -F file=@${{ steps.checkout.outputs.added }} -F additionalProperties="{\"name\":\"sanuli\",\"version\":\"1.2.3\",\"context\":\"/sanuli\",\"endpointConfig\":{\"endpoint_type\":\"http\",\"sandbox_endpoints\":{\"url\":\"https://localhost:9443/am/sample/pizzashack/v1/api/\"},\"production_endpoints\":{\"url\":\"https://localhost:9443/am/sample/pizzashack/v1/api/\"}}}" "http://edba63783ff9.ngrok.io/api/am/publisher/v1/apis/import-openapi")
+          echo "boo";
           echo "::set-output name=responseJson::$output"
+      - run : |
+          echo "tanya";
           echo "${{fromJson(steps.createapi.outputs.responseJson).id}}"
+      - name: Commit files 
+        run: |
           git config --local user.name ${{ github.actor }}
           echo "${{ steps.checkout.outputs.modified }} ${{fromJson(steps.createapi.outputs.responseJson).id}}" >> id.txt
           git add id.txt
-          git commit -m "Add api id to id.txt file"
+          git commit -m "Add changes"
       - name: Push changes 
         uses: ad-m/github-push-action@master
         with:
