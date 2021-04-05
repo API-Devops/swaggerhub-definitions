@@ -45,7 +45,7 @@ jobs:
         id: createapi
         run : |
           echo "${{fromJson(steps.readswagger.outputs.content).info.title}}"
-          output=$(curl -k -H "Authorization: Bearer 7aab5199-1160-33ba-b1de-07453a685a5a" -F file=@${{ steps.checkout.outputs.added }} -F additionalProperties="{\"name\":\"${{steps.readswagger.outputs.content.info.title}}\",\"version\":\"${{steps.readswagger.outputs.content.info.version}}\",\"context\":\"/sanuli\"}" "http://edba63783ff9.ngrok.io/api/am/publisher/v1/apis/import-openapi")
+          output=$(curl -k -H "Authorization: Bearer 049d356f-ce72-3f6b-83ae-78bfbe7ca52c" -F file=@${{ steps.checkout.outputs.added }} -F additionalProperties="{\"name\":\"${{steps.readswagger.outputs.content.info.title}}\",\"version\":\"${{steps.readswagger.outputs.content.info.version}}\",\"context\":\"/sanuli\"}" "http://edba63783ff9.ngrok.io/api/am/publisher/v1/apis/import-openapi")
           echo "::set-output name=responseJson::$output"
       -  if: ${{ steps.checkout.outputs.added != '' }}
          run : |
@@ -76,4 +76,4 @@ jobs:
         if: ${{ steps.checkout.outputs.modified != '' }}
         run : |
           echo ${{ steps.split.outputs._1}}
-          update=$(curl -k -X PUT -H "Authorization: Bearer 7aab5199-1160-33ba-b1de-07453a685a5a" -F apiDefinition=@${{ steps.checkout.outputs.modified }} "http://edba63783ff9.ngrok.io/api/am/publisher/v1/apis/${{ steps.split.outputs._1 }}/swagger")
+          update=$(curl -k -X PUT -H "Authorization: Bearer 049d356f-ce72-3f6b-83ae-78bfbe7ca52c" -F apiDefinition=@${{ steps.checkout.outputs.modified }} "http://edba63783ff9.ngrok.io/api/am/publisher/v1/apis/${{ steps.split.outputs._1 }}/swagger")
