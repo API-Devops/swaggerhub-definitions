@@ -38,7 +38,7 @@ jobs:
         name: createapi
         id: createapi
         run : |
-          output=$(curl -k -H "Authorization: Bearer 85384f0c-e764-39ce-886d-6fcfcf6546b2" -F file=@${{ steps.checkout.outputs.added }} -F additionalProperties="{\"name\":\"sanuli\",\"version\":\"1.2.3\",\"context\":\"/sanuli\",\"endpointConfig\":{\"endpoint_type\":\"http\",\"sandbox_endpoints\":{\"url\":\"https://localhost:9443/am/sample/pizzashack/v1/api/\"},\"production_endpoints\":{\"url\":\"https://localhost:9443/am/sample/pizzashack/v1/api/\"}}}" "http://edba63783ff9.ngrok.io/api/am/publisher/v1/apis/import-openapi")
+          output=$(curl -k -H "Authorization: Bearer b7aab797-5a1f-3dd5-ae3a-2a8d249afa69" -F file=@${{ steps.checkout.outputs.added }} -F additionalProperties="{\"name\":\"sanuli\",\"version\":\"1.2.3\",\"context\":\"/sanuli\",\"endpointConfig\":{\"endpoint_type\":\"http\",\"sandbox_endpoints\":{\"url\":\"https://localhost:9443/am/sample/pizzashack/v1/api/\"},\"production_endpoints\":{\"url\":\"https://localhost:9443/am/sample/pizzashack/v1/api/\"}}}" "http://edba63783ff9.ngrok.io/api/am/publisher/v1/apis/import-openapi")
           echo "::set-output name=responseJson::$output"
           echo "${{fromJson(steps.createapi.outputs.responseJson).id}}"
           git config --local user.name ${{ github.actor }}
