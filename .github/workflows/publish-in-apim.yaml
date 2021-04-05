@@ -42,7 +42,6 @@ jobs:
       - name: printtext
         run : |
           echo "tanya";
-          echo "$output"
       - name: Commit files 
         run: |
           git config --local user.name ${{ github.actor }}
