@@ -44,7 +44,7 @@ jobs:
          run : |
           echo "${{fromJson(steps.createapi.outputs.responseJson).id}}"
           git config --local user.name ${{ github.actor }}
-          echo "${{ steps.checkout.outputs.added }} ${{fromJson(steps.createapi.outputs.responseJson).id}}" >> id.txt
+          echo "${{ steps.checkout.outputs.added }}::${{fromJson(steps.createapi.outputs.responseJson).id}}" >> id.txt
           git add id.txt
           git commit -m "Add changes"
       - name: Push changes 
@@ -63,9 +63,10 @@ jobs:
         uses: rishabhgupta/split-by@v1
         id: split
         with:
-          string: ${{ steps.idfile.outputs.content }} 
-          split-by: ' '
-      - if: ${{ steps.checkout.outputs.modified != '' }}
+          string: echo ${{ steps.idfile.outputs.content }} 
+          split-by: '::'
+      - name: update api
+        if: ${{ steps.checkout.outputs.modified != '' }}
         run : |
           echo ${{ steps.split.outputs._1}}
           update=$(curl -k -X PUT -H "Authorization: Bearer dc658218-b996-3e2b-999e-f44cf590cd9c" -F apiDefinition=@${{ steps.checkout.outputs.modified }} "http://edba63783ff9.ngrok.io/api/am/publisher/v1/apis/${{ steps.split.outputs._1 }}/swagger")
