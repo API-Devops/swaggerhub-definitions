@@ -34,11 +34,18 @@ jobs:
           echo "${{ steps.checkout.outputs.added_modified }}"
           echo "if condition"
           echo ${{ steps.checkout.outputs.added != '' }}
+      - name: read swagger
+        if: ${{ steps.checkout.outputs.added != '' }}
+        id: readswagger
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./${{ steps.checkout.outputs.added}}
       - name: createapi
         if: ${{ steps.checkout.outputs.added != '' }}
         id: createapi
         run : |
-          output=$(curl -k -H "Authorization: Bearer dc658218-b996-3e2b-999e-f44cf590cd9c" -F file=@${{ steps.checkout.outputs.added }} -F additionalProperties="{\"name\":\"sanuli\",\"version\":\"1.2.3\",\"context\":\"/sanuli\",\"endpointConfig\":{\"endpoint_type\":\"http\",\"sandbox_endpoints\":{\"url\":\"https://localhost:9443/am/sample/pizzashack/v1/api/\"},\"production_endpoints\":{\"url\":\"https://localhost:9443/am/sample/pizzashack/v1/api/\"}}}" "http://edba63783ff9.ngrok.io/api/am/publisher/v1/apis/import-openapi")
+          echo "${{steps.readswagger.outputs.content.info.title}}"
+          output=$(curl -k -H "Authorization: Bearer dc658218-b996-3e2b-999e-f44cf590cd9c" -F file=@${{ steps.checkout.outputs.added }} -F additionalProperties="{\"name\":\"${{steps.readswagger.outputs.content.info.title}}\",\"version\":\"${{steps.readswagger.outputs.content.info.version}}\",\"context\":\"/sanuli\"}" "http://edba63783ff9.ngrok.io/api/am/publisher/v1/apis/import-openapi")
           echo "::set-output name=responseJson::$output"
       -  if: ${{ steps.checkout.outputs.added != '' }}
          run : |
