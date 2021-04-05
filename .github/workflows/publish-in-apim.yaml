@@ -60,12 +60,11 @@ jobs:
         with:
           path: ./id.txt
       - if: ${{ steps.checkout.outputs.modified != '' }}
-        uses: jungwinter/split@v1
+      - uses: rishabhgupta/split-by@v1
         id: split
         with:
-          msg: echo ${{ steps.idfile.outputs.content }} 
-      - name: updateapi
-        if: ${{ steps.checkout.outputs.modified != '' }}
-        id: updateapi
-        run : |
+          string: ${{ steps.idfile.outputs.content }} 
+          split-by: ' '
+      - run : |
+          echo ${{ steps.split.outputs._1}}
           update=$(curl -k -X PUT -H "Authorization: Bearer dc658218-b996-3e2b-999e-f44cf590cd9c" -F apiDefinition=@${{ steps.checkout.outputs.modified }} "http://edba63783ff9.ngrok.io/api/am/publisher/v1/apis/${{ steps.split.outputs._1 }}/swagger")
