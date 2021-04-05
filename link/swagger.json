@@ -48,7 +48,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "repositories owned by the supplied user sanu",
+            "description" : "repositories owned by the supplied user sanuliiii",
             "content" : {
               "application/json" : {
                 "schema" : {
