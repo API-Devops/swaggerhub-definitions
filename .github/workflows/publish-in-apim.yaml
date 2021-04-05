@@ -43,7 +43,8 @@ jobs:
           swagger="${swagger//$'\n'/'%0A'}"
           content="${swagger//$'\r'/'%0D'}"
           echo "::set-output name=swaggerJson::$swagger"
-      - run: |
+      - if: ${{ steps.checkout.outputs.added != '' }}
+        run: |
           echo "${{fromJson(steps.readspec.outputs.swaggerJson).info.title}}"  
       - name: createapi
         if: ${{ steps.checkout.outputs.added != '' }}
