@@ -40,11 +40,16 @@ jobs:
         uses: juliangruber/read-file-action@v1
         with:
           path: ./${{ steps.checkout.outputs.added}}
+      - name: get swagger content
+        id: getswagger
+        if: ${{ steps.checkout.outputs.added != '' }}
+        run : |
+          echo "::set-output name=swagger::${{steps.readswagger.outputs.content}}"
       - name: createapi
         if: ${{ steps.checkout.outputs.added != '' }}
         id: createapi
         run : |
-          echo "${{fromJson(steps.readswagger.outputs.content).info.title}}"
+          echo "${{fromJson(steps.getswagger.outputs.swagger).info}}"
           output=$(curl -k -H "Authorization: Bearer 049d356f-ce72-3f6b-83ae-78bfbe7ca52c" -F file=@${{ steps.checkout.outputs.added }} -F additionalProperties="{\"name\":\"${{steps.readswagger.outputs.content.info.title}}\",\"version\":\"${{steps.readswagger.outputs.content.info.version}}\",\"context\":\"/sanuli\"}" "http://edba63783ff9.ngrok.io/api/am/publisher/v1/apis/import-openapi")
           echo "::set-output name=responseJson::$output"
       -  if: ${{ steps.checkout.outputs.added != '' }}
