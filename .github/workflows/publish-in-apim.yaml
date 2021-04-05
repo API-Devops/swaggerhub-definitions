@@ -33,7 +33,7 @@ jobs:
           echo "Added+Modified:"
           echo "${{ steps.checkout.outputs.added_modified }}"
           echo "if condition"
-          echo ${{ steps.checkout.outputs.added !== '' }}
+          echo ${{ steps.checkout.outputs.added != '' }}
       - if: ${{ steps.checkout.outputs.added != '' }}
         name: createapi
         id: createapi
