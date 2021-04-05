@@ -44,7 +44,7 @@ jobs:
       - name: Commit files 
         run: |
           git config --local user.name ${{ github.actor }}
-          git add "${{fromJson(steps.createapi.outputs.response.json).id}}".txt
+          git add "${{ steps.checkout.outputs.modified }}/../${{fromJson(steps.createapi.outputs.responseJson).id}}".txt
           git commit -m "Add changes"
       - name: Push changes 
         uses: ad-m/github-push-action@master
