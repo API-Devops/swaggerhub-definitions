@@ -1,3 +1,1 @@
 
-link/swagger.yaml::
-link/swagger.yaml::
