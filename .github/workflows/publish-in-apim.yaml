@@ -42,6 +42,7 @@ jobs:
       - name: printtext
         run : |
           echo "tanya";
+          echo "$output"
           echo "$${{ fromJSON($output).id}}"
       - name: Commit files 
         run: |
