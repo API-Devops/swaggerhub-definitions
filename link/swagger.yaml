@@ -33,7 +33,7 @@ paths:
             type: string
       responses:
         '200':
-          description: repositories owned by the supplied userrrr tanyavv
+          description: repositories owned by the supplied user tanya
           content:
             application/json:
               schema:
