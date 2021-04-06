@@ -18,7 +18,7 @@
         "parameters" : [ {
           "name" : "limit",
           "in" : "query",
-          "description" : "How many items to return at one time (max 100)",
+          "description" : "How many items to return at one time",
           "required" : false,
           "type" : "integer",
           "format" : "int32"
