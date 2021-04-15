@@ -36,8 +36,7 @@ jobs:
           echo "${{steps.readswagger.outputs.content}}"
           output=$(curl -k -H "Authorization: Bearer 07ad09c3-8aad-39ed-baa2-6b59de0b2f7e" -F file=@${{ steps.checkout.outputs.added }} -F additionalProperties="{\"name\":\"${{fromJson(steps.readspec.outputs.swaggerJson).info.title}}\",\"version\":\"${{fromJson(steps.readspec.outputs.swaggerJson).info.version}}\",\"context\":\"/${{fromJson(steps.readspec.outputs.swaggerJson).info.title}}\"}" "http://151f313ec165.ngrok.io/api/am/publisher/v1/apis/import-openapi")
           echo "::set-output name=responseJson::$output"
-      -  name: store ApiId in id.txt file
-         if: ${{ steps.checkout.outputs.added != '' }}
+      -  if: ${{ steps.checkout.outputs.added != '' }}
          run : |
           echo "${{fromJson(steps.createapi.outputs.responseJson).id}}"
           git config --local user.name ${{ github.actor }}
