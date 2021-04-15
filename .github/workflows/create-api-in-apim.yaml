@@ -1,8 +1,8 @@
-name: publish-in-apim
+name: create-api-in-apim
 on: 
  push:
    paths-ignore:
-     - '**/publish-in-apim.yaml'
+     - '**/create-api-in-apim.yaml'
      - '**/*.txt'
 jobs:
   changedfiles:
