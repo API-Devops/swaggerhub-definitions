@@ -1,2 +1,1 @@
 
-petstore/swagger.json::9ca0eb25-cbd9-477c-88ab-99fd35c5c2db
