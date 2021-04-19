@@ -34,7 +34,7 @@ jobs:
         id: createapi
         run : |
           echo "${{steps.readswagger.outputs.content}}"
-          output=$(curl -k -H "Authorization: Bearer 237fd149-e545-30a0-bac0-aea46823fecb" -F file=@${{ steps.checkout.outputs.added }} -F additionalProperties="{\"name\":\"${{fromJson(steps.readspec.outputs.swaggerJson).info.title}}\",\"version\":\"${{fromJson(steps.readspec.outputs.swaggerJson).info.version}}\",\"context\":\"/${{fromJson(steps.readspec.outputs.swaggerJson).info.title}}\"}" "http://91326fd4ba84.ngrok.io/api/am/publisher/v1/apis/import-openapi")
+          output=$(curl -k -H "Authorization: Bearer 8b500085-ce3e-3826-9735-c49f2cad066b" -F file=@${{ steps.checkout.outputs.added }} -F additionalProperties="{\"name\":\"${{fromJson(steps.readspec.outputs.swaggerJson).info.title}}\",\"version\":\"${{fromJson(steps.readspec.outputs.swaggerJson).info.version}}\",\"context\":\"/${{fromJson(steps.readspec.outputs.swaggerJson).info.title}}\"}" "http://91326fd4ba84.ngrok.io/api/am/publisher/v1/apis/import-openapi")
           echo "::set-output name=responseJson::$output"
       -  if: ${{ steps.checkout.outputs.added != '' }}
          run : |
@@ -66,4 +66,4 @@ jobs:
         if: ${{ steps.checkout.outputs.modified != '' }}
         run : |
           echo ${{ steps.split.outputs._1}}
-          update=$(curl -k -X PUT -H "Authorization: Bearer 237fd149-e545-30a0-bac0-aea46823fecb" -F apiDefinition=@${{ steps.checkout.outputs.modified }} "http://91326fd4ba84.ngrok.io/api/am/publisher/v1/apis/${{ steps.split.outputs._1 }}/swagger")
+          update=$(curl -k -X PUT -H "Authorization: Bearer 8b500085-ce3e-3826-9735-c49f2cad066b" -F apiDefinition=@${{ steps.checkout.outputs.modified }} "http://91326fd4ba84.ngrok.io/api/am/publisher/v1/apis/${{ steps.split.outputs._1 }}/swagger")
