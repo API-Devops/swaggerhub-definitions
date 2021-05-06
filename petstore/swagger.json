@@ -2,7 +2,7 @@
   "openapi" : "3.0.2",
   "servers" : [ {
     "description" : "SwaggerHub API Auto Mocking",
-    "url" : "https://virtserver.swaggerhub.com/tanya2/PetstoreAPI/1.0.0"
+    "url" : "https://petstore3.swagger.io/api/v3/"
   }, {
     "url" : "/v3"
   } ],
